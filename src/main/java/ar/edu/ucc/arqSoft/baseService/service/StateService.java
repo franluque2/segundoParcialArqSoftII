@@ -20,6 +20,12 @@ public class StateService {
 	public StateResponseDto getStateById(Long id) {
 		State state = stateDao.load(id);
 		
+		
+		//StateResponseDto dto = new StateResponseDto();
+		//dto.setName(state.getName());
+		//return dto;
+		
+		
 		StateResponseDto response = (StateResponseDto) new ModelDtoConverter().convertToDto(state, new StateResponseDto());	
 		return response;
 	}

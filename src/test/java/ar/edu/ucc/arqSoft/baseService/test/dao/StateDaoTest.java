@@ -31,6 +31,7 @@ public class StateDaoTest {
 	public void testFindById() {
 		logger.info("Test de busqueda de State por ID");
 		State state = stateDao.load((long) 2);
+		
 		Assert.assertEquals("Córdoba", state.getName());
 		return;
 	}

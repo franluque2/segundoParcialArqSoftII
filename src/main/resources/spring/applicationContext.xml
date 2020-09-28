@@ -15,7 +15,7 @@
 	<!--  Paquete donde estan las clases del modelo con las anotaciones ENTITY -->
 	<context:component-scan base-package="ar.edu.ucc.arqSoft.baseService.model"/>
 
-	<!--  Paquete donde estan las clases del SAO con las anotaciones DAO o REPOSITORY -->
+	<!--  Paquete donde estan las clases del DAO con las anotaciones DAO o REPOSITORY -->
 	<context:component-scan base-package="ar.edu.ucc.arqSoft.baseService.dao"/>
 	
 	<!--  Paquete donde estan las clases del SAO con las anotaciones SERVICE -->

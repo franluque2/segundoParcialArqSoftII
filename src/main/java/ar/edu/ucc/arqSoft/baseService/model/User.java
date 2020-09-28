@@ -65,8 +65,5 @@ public class User extends GenericObject{
 
 	public void setAddresses(Set<Address> addresses) {
 		this.addresses = addresses;
-	}
-	
-	
-
+	}	
 }
