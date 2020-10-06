@@ -13,7 +13,6 @@
         <class>ar.edu.ucc.arqSoft.baseService.model.State</class>
         <class>ar.edu.ucc.arqSoft.baseService.model.Address</class>
         <class>ar.edu.ucc.arqSoft.baseService.model.User</class>
-        <class>ar.edu.ucc.arqSoft.baseService.model.XXX</class>
         
         <properties>
         
@@ -22,7 +21,7 @@
        		<!--- CONFIGURACION BASE DA DATOS, USER Y PWD -->
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/TEST" />
             <property name="javax.persistence.jdbc.user" value="ucc" />
-            <property name="javax.persistence.jdbc.password" value="XXX" />
+            <property name="javax.persistence.jdbc.password" value="2-Uccwrite" />
             <!---  -->
             
             <property name="hibernate.show_sql" value="true"/>

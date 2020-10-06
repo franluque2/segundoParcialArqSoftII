@@ -1,5 +1,8 @@
 package ar.edu.ucc.arqSoft.baseService.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,14 +22,20 @@ public class StateService {
 
 	public StateResponseDto getStateById(Long id) {
 		State state = stateDao.load(id);
-		
-		
-		//StateResponseDto dto = new StateResponseDto();
-		//dto.setName(state.getName());
-		//return dto;
-		
-		
+				
 		StateResponseDto response = (StateResponseDto) new ModelDtoConverter().convertToDto(state, new StateResponseDto());	
+		return response;
+	}
+	
+	public List<StateResponseDto> getAllStates() {
+		List<State> states = stateDao.getAll();
+		
+		List<StateResponseDto> response = new ArrayList<StateResponseDto>();
+		 
+		for (State state : states) {
+			response.add((StateResponseDto) new ModelDtoConverter().convertToDto(state, new StateResponseDto()));
+		}
+		
 		return response;
 	}
 	
