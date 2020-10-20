@@ -14,6 +14,10 @@
         <class>ar.edu.ucc.arqSoft.baseService.model.Address</class>
         <class>ar.edu.ucc.arqSoft.baseService.model.User</class>
         
+        <class>ar.edu.ucc.arqSoft.baseService.model.Pelicula</class>
+        <class>ar.edu.ucc.arqSoft.baseService.model.Socio</class>
+        <class>ar.edu.ucc.arqSoft.baseService.model.Alquiler</class>
+        
         <properties>
         
        		<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
