@@ -31,7 +31,8 @@ public class StateController {
     @RequestMapping(value="/{id}", method=RequestMethod.GET, produces= MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody StateResponseDto lookupStateById(@PathVariable("id") Long id)
     {
-        return stateService.getStateById(id);
+        //return stateService.getStateById(id);
+    	return null;
     }
     
     @RequestMapping(method=RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces= MediaType.APPLICATION_JSON_VALUE)

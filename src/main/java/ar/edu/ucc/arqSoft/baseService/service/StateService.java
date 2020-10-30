@@ -12,6 +12,7 @@ import ar.edu.ucc.arqSoft.baseService.dto.StateRequestDto;
 import ar.edu.ucc.arqSoft.baseService.dto.StateResponseDto;
 import ar.edu.ucc.arqSoft.baseService.model.State;
 import ar.edu.ucc.arqSoft.common.dto.ModelDtoConverter;
+import ar.edu.ucc.arqSoft.common.exception.EntityNotFoundException;
 
 @Service
 @Transactional
@@ -20,7 +21,7 @@ public class StateService {
 	@Autowired
 	private StateDao stateDao;
 
-	public StateResponseDto getStateById(Long id) {
+	public StateResponseDto getStateById(Long id) throws EntityNotFoundException {
 		State state = stateDao.load(id);
 				
 		StateResponseDto response = (StateResponseDto) new ModelDtoConverter().convertToDto(state, new StateResponseDto());	
