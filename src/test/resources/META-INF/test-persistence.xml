@@ -10,10 +10,11 @@
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         
         <!-- En este Bloque se agregan las clases del modelo que mapeamos -->
-        <class>ar.edu.ucc.arqSoft.baseService.model.State</class>
-        <class>ar.edu.ucc.arqSoft.baseService.model.Address</class>
-        <class>ar.edu.ucc.arqSoft.baseService.model.User</class>
-        <class>ar.edu.ucc.arqSoft.baseService.model.XXX</class>
+        <class>ar.edu.ucc.arqSoft.segundoParcial.model.Comment</class>
+        <class>ar.edu.ucc.arqSoft.segundoParcial.model.State</class>
+        <class>ar.edu.ucc.arqSoft.segundoParcial.model.Task</class>
+        <class>ar.edu.ucc.arqSoft.segundoParcial.model.XXXX</class>
+        <class>ar.edu.ucc.arqSoft.segundoParcial.model.XXX</class>
         
         <properties>
         
