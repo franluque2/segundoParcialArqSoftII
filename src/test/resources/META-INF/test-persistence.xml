@@ -20,10 +20,10 @@
        		<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
        		
        		<!--- CONFIGURACION BASE DA DATOS, USER Y PWD -->
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/TEST" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://18.228.59.5:3306/ticketApp"/>
             <property name="javax.persistence.jdbc.user" value="ucc" />
-            <property name="javax.persistence.jdbc.password" value="XXX" />
-            <!---  -->
+            <property name="javax.persistence.jdbc.password" value="ucc" />
+		<!---  -->
             
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="false"/>
