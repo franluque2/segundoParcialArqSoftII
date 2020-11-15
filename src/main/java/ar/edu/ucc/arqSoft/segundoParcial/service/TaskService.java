@@ -1,0 +1,136 @@
+package ar.edu.ucc.arqSoft.segundoParcial.service;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import ar.edu.ucc.arqSoft.baseService.dao.AlquilerDao;
+import ar.edu.ucc.arqSoft.baseService.dao.PeliculaDao;
+import ar.edu.ucc.arqSoft.baseService.dao.SocioDao;
+import ar.edu.ucc.arqSoft.baseService.dto.AlquilerRequestDto;
+import ar.edu.ucc.arqSoft.baseService.dto.AlquilerResponseDto;
+import ar.edu.ucc.arqSoft.baseService.dto.PeliculaResponseDto;
+import ar.edu.ucc.arqSoft.baseService.model.Alquiler;
+import ar.edu.ucc.arqSoft.baseService.model.Pelicula;
+import ar.edu.ucc.arqSoft.common.dto.ModelDtoConverter;
+import ar.edu.ucc.arqSoft.common.exception.BadRequestException;
+import ar.edu.ucc.arqSoft.common.exception.EntityNotFoundException;
+import ar.edu.ucc.arqSoft.segundoParcial.dao.CommentDao;
+import ar.edu.ucc.arqSoft.segundoParcial.dao.ProjectDao;
+import ar.edu.ucc.arqSoft.segundoParcial.dao.StateDao;
+import ar.edu.ucc.arqSoft.segundoParcial.dao.TaskDao;
+import ar.edu.ucc.arqSoft.segundoParcial.dao.UserDao;
+import ar.edu.ucc.arqSoft.segundoParcial.dto.TaskRequestDto;
+import ar.edu.ucc.arqSoft.segundoParcial.dto.TaskResponseDto;
+import ar.edu.ucc.arqSoft.segundoParcial.model.Comment;
+import ar.edu.ucc.arqSoft.segundoParcial.model.Task;
+
+@Service
+@Transactional
+public class TaskService {
+	
+	@Autowired
+	private UserDao userDao;
+	
+	@Autowired
+	private TaskDao taskDao;
+	
+	@Autowired
+	private ProjectDao projectDao;
+	
+	@Autowired
+	private StateDao stateDao;
+	
+	@Autowired
+	private CommentDao commentDao;
+	
+	public TaskResponseDto insertTask (TaskRequestDto dto) throws EntityNotFoundException {
+		
+		Task task = new Task();
+		
+		task.setName(dto.getTaskName());
+		task.setBody(dto.getBody());
+		task.setUser(userDao.load(dto.getUserId()));
+		task.setProject(projectDao.load(dto.getProjectId()));
+		task.setState(stateDao.load(dto.getStateId()));
+		task.setDateStart(Calendar.getInstance().getTime());
+		
+		taskDao.insert(task);
+		
+		TaskResponseDto response=new TaskResponseDto();
+		
+		response.setName(task.getName());
+		response.setUser(task.getUser());
+		response.setProject(task.getProject());
+		response.setDate(task.getDateStart());
+		
+		// Mail try catch
+		
+		return response;
+		
+	}
+	
+	public TaskResponseDto getTaskById (Long id) throws EntityNotFoundException, BadRequestException {
+		
+		if (id <= 0) {
+			throw new BadRequestException();
+		}
+		
+		Task task = taskDao.load(id);
+		TaskResponseDto dto=new TaskResponseDto();
+		dto.setName(task.getName());
+		dto.setName(task.getTaskName());
+		dto.setBody(task.getBody());
+		dto.setUserId(task.getUser());
+		dto.setProjectId(task.getProject());
+		dto.setState(task.getState());
+		dto.setDateStart(task.getDateStart());
+		dto.setDateEnd(task.getDateEnd());
+		dto.setComments(task.getComments());
+		
+		
+		return dto;
+		
+	}
+	public List<TaskResponseDto> getAllTasks() {
+		List<Task> tasks = taskDao.getAll();
+		
+		List<TaskResponseDto> response = new ArrayList<TaskResponseDto>();
+		 
+		for (Task task : tasks) {
+			response.add((TaskResponseDto) new ModelDtoConverter().convertToDto(task, new TaskResponseDto()));
+		}
+		
+		return response;
+	}
+	
+	public TaskResponseDto changeUser (TaskRequestDto dto) throws EntityNotFoundException {
+		{
+			Task task=taskDao.load(key);
+			
+			
+			Comment comment=new Comment();
+			comment.setDate(Calendar.getInstance().getTime());
+			comment.setBody("Se cambio el usuario de "+task.getUser().getUsername()+" a "+userDao.load(dto.getUserId()).getUsername()+".");
+			comment.setTask(task);
+			comment.setName("Cambio de Usuario");
+			task.setUser(userDao.load(dto.getUserId()));
+			task.addComment(comment);
+			taskDao.update(task);
+			TaskResponseDto response=new TaskResponseDto();
+			
+			response.setName(task.getName());
+			response.setUser(task.getUser());
+			response.setProject(task.getProject());
+			response.setDate(task.getDateStart());
+			
+			
+			return response;
+		}
+	}
+	
+}
