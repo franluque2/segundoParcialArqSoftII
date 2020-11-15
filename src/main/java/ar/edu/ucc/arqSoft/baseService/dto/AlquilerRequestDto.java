@@ -3,8 +3,7 @@ package ar.edu.ucc.arqSoft.baseService.dto;
 public class AlquilerRequestDto {
 
 		private Long socioId;
-		
-		private Long peliculaId;
+	
 
 		public Long getSocioId() {
 			return socioId;
