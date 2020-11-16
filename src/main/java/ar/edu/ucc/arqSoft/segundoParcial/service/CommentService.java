@@ -40,27 +40,21 @@ public class CommentService {
 	public CommentResponseDto insertComment (CommentRequestDto dto) throws EntityNotFoundException, BadRequestException {
 		
 		Comment comment = new Comment();
+		comment.setName(dto.getName());
+		comment.setBody(dto.getBody());
+		comment.setUser(userDao.load(dto.getUserId()));
+		comment.setTask(taskDao.load(dto.getTaskId()));
+		comment.setDate(Calendar.getInstance().getTime());
 		
+		commentDao.insert(comment);
 		
-		/*
-		task.setName(dto.getTaskName());
-		task.setBody(dto.getBody());
-		task.setUser(userDao.load(dto.getUserId()));
-		task.setProject(projectDao.load(dto.getProjectId()));
-		task.setState(stateDao.load(dto.getStateId()));
-		task.setDateStart(Calendar.getInstance().getTime());
+		CommentResponseDto response=new CommentResponseDto();
 		
-		taskDao.insert(task);
+		response.setName(comment.getName());
+		response.setUserId(comment.getUser().getId());
+		response.setBody(comment.getBody());
+		response.setDate(comment.getDate());
 		
-		TaskResponseDto response=new TaskResponseDto();
-		
-		response.setName(task.getName());
-		response.setUserId(task.getUser().getId());
-		response.setProjectId(task.getProject().getId());
-		response.setDate(task.getDateStart());
-		
-		// Mail try catch
-		*/
 		return response;
 		
 	}
@@ -70,19 +64,16 @@ public class CommentService {
 		if (id <= 0) {
 			throw new BadRequestException();
 		}
-		/*
-		Task task = taskDao.load(id);
-		TaskResponseDto dto=new TaskResponseDto();
-		dto.setName(task.getName());
-		dto.setBody(task.getBody());
-		dto.setUserId(task.getUser().getId());
-		dto.setProjectId(task.getProject().getId());
-		dto.setState(task.getState());
-		dto.setDateStart(task.getDateStart());
-		dto.setDateEnd(task.getDateEnd());
-		dto.setComments(task.getComments());
+		Comment comment=commentDao.load(id);
+	
+		CommentResponseDto dto=new CommentResponseDto();
+		dto.setBody(comment.getBody());
+		dto.setDate(comment.getDate());
+		dto.setName(comment.getName());
+		dto.setTaskId(comment.getTask().getId());
+		dto.setUserId(comment.getUser().getId());
 		
-		*/
+	
 		return dto;
 		
 	}
