@@ -17,8 +17,10 @@ import ar.edu.ucc.arqSoft.segundoParcial.dao.StateDao;
 import ar.edu.ucc.arqSoft.segundoParcial.dao.TaskDao;
 import ar.edu.ucc.arqSoft.segundoParcial.dao.UserDao;
 import ar.edu.ucc.arqSoft.segundoParcial.dto.TaskChangeRequestDto;
+import ar.edu.ucc.arqSoft.segundoParcial.dto.TaskChangeStateRequestDto;
 import ar.edu.ucc.arqSoft.segundoParcial.dto.TaskRequestDto;
 import ar.edu.ucc.arqSoft.segundoParcial.dto.TaskResponseDto;
+import ar.edu.ucc.arqSoft.segundoParcial.exception.TaskClosedException;
 import ar.edu.ucc.arqSoft.segundoParcial.model.Comment;
 import ar.edu.ucc.arqSoft.segundoParcial.model.Task;
 
@@ -100,10 +102,14 @@ public class TaskService {
 		return response;
 	}
 	
-	public TaskResponseDto changeUser (TaskChangeRequestDto dto) throws EntityNotFoundException {
+	public TaskResponseDto changeUser (TaskChangeRequestDto dto) throws EntityNotFoundException,TaskClosedException {
 		{
 			Task task=taskDao.load(dto.getTaskId());
 			
+			if(taskDao.load(dto.getTaskId()).getState().getName()=="Closed")
+			{
+				throw new TaskClosedException();
+			}
 			
 			Comment comment=new Comment();
 			comment.setDate(Calendar.getInstance().getTime());
@@ -124,5 +130,36 @@ public class TaskService {
 			return response;
 		}
 	}
+	
+	public TaskResponseDto changeUser (TaskChangeStateRequestDto dto) throws EntityNotFoundException,TaskClosedException {
+		{
+			Task task=taskDao.load(dto.getTaskId());
+			
+			
+			
+			Comment comment=new Comment();
+			comment.setDate(Calendar.getInstance().getTime());
+			comment.setBody("Se cambio el estado de "+task.getState().getName()+" a "+stateDao.load(dto.getStateId()).getName()+".");
+			comment.setTask(task);
+			comment.setName("Cambio de Estado");
+			task.setState(stateDao.load(dto.getStateId()));
+			task.addComment(comment);
+			if(task.getState().getName()=="Closed")
+			{
+				task.setDateEnd(Calendar.getInstance().getTime());
+			}
+			taskDao.update(task);
+			TaskResponseDto response=new TaskResponseDto();
+			
+			response.setName(task.getName());
+			response.setUserId(task.getUser().getId());
+			response.setProjectId(task.getProject().getId());
+			response.setDate(task.getDateStart());
+			response.setState(task.getState());
+			
+			
+			return response;
+		}
+	} 
 	
 }

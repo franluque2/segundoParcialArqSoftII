@@ -21,6 +21,7 @@ import ar.edu.ucc.arqSoft.segundoParcial.dto.CommentResponseDto;
 import ar.edu.ucc.arqSoft.segundoParcial.dto.TaskChangeRequestDto;
 import ar.edu.ucc.arqSoft.segundoParcial.dto.TaskRequestDto;
 import ar.edu.ucc.arqSoft.segundoParcial.dto.TaskResponseDto;
+import ar.edu.ucc.arqSoft.segundoParcial.exception.TaskClosedException;
 import ar.edu.ucc.arqSoft.segundoParcial.model.Comment;
 import ar.edu.ucc.arqSoft.segundoParcial.model.Task;
 
@@ -37,7 +38,11 @@ public class CommentService {
 	@Autowired
 	private CommentDao commentDao;
 	
-	public CommentResponseDto insertComment (CommentRequestDto dto) throws EntityNotFoundException, BadRequestException {
+	public CommentResponseDto insertComment (CommentRequestDto dto) throws EntityNotFoundException, BadRequestException, TaskClosedException {
+		if(taskDao.load(dto.getTaskId()).getState().getName()=="Closed")
+		{
+			throw new TaskClosedException();
+		}
 		
 		Comment comment = new Comment();
 		comment.setName(dto.getName());
