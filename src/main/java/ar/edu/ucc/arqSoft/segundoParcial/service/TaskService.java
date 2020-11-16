@@ -131,7 +131,7 @@ public class TaskService {
 		}
 	}
 	
-	public TaskResponseDto changeUser (TaskChangeStateRequestDto dto) throws EntityNotFoundException,TaskClosedException {
+	public TaskResponseDto changeState (TaskChangeStateRequestDto dto) throws EntityNotFoundException,TaskClosedException {
 		{
 			Task task=taskDao.load(dto.getTaskId());
 			
