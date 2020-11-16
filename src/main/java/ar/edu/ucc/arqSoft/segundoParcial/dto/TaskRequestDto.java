@@ -11,6 +11,7 @@ public class TaskRequestDto implements DtoEntity {
 	private Long projectId;
 	
 	private Long stateId;
+	
 	private String Body;
 	
 	public String getTaskName() {

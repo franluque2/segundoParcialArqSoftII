@@ -73,6 +73,19 @@ public class User extends GenericObject {
 	@Size(min = 1, max = 400)
 	@Column(name = "PASSWORD")
 	private String password;
+	
+	@NotNull
+	@Size(min = 1, max =  400)
+	@Column(name = "PERMITS")
+	private String permits;
+	
+	public String getPermits() {
+		return permits;
+	}
+
+	public void setPermits(String permits) {
+		this.permits = permits;
+	}
 
 	public String getName() {
 		return name;
