@@ -8,14 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import ar.edu.ucc.arqSoft.baseService.dao.AlquilerDao;
-import ar.edu.ucc.arqSoft.baseService.dao.PeliculaDao;
-import ar.edu.ucc.arqSoft.baseService.dao.SocioDao;
-import ar.edu.ucc.arqSoft.baseService.dto.AlquilerRequestDto;
-import ar.edu.ucc.arqSoft.baseService.dto.AlquilerResponseDto;
-import ar.edu.ucc.arqSoft.baseService.dto.PeliculaResponseDto;
-import ar.edu.ucc.arqSoft.baseService.model.Alquiler;
-import ar.edu.ucc.arqSoft.baseService.model.Pelicula;
 import ar.edu.ucc.arqSoft.common.dto.ModelDtoConverter;
 import ar.edu.ucc.arqSoft.common.exception.BadRequestException;
 import ar.edu.ucc.arqSoft.common.exception.EntityNotFoundException;
@@ -24,6 +16,7 @@ import ar.edu.ucc.arqSoft.segundoParcial.dao.ProjectDao;
 import ar.edu.ucc.arqSoft.segundoParcial.dao.StateDao;
 import ar.edu.ucc.arqSoft.segundoParcial.dao.TaskDao;
 import ar.edu.ucc.arqSoft.segundoParcial.dao.UserDao;
+import ar.edu.ucc.arqSoft.segundoParcial.dto.TaskChangeRequestDto;
 import ar.edu.ucc.arqSoft.segundoParcial.dto.TaskRequestDto;
 import ar.edu.ucc.arqSoft.segundoParcial.dto.TaskResponseDto;
 import ar.edu.ucc.arqSoft.segundoParcial.model.Comment;
@@ -48,7 +41,7 @@ public class TaskService {
 	@Autowired
 	private CommentDao commentDao;
 	
-	public TaskResponseDto insertTask (TaskRequestDto dto) throws EntityNotFoundException {
+	public TaskResponseDto insertTask (TaskRequestDto dto) throws EntityNotFoundException, BadRequestException {
 		
 		Task task = new Task();
 		
@@ -64,8 +57,8 @@ public class TaskService {
 		TaskResponseDto response=new TaskResponseDto();
 		
 		response.setName(task.getName());
-		response.setUser(task.getUser());
-		response.setProject(task.getProject());
+		response.setUserId(task.getUser().getId());
+		response.setProjectId(task.getProject().getId());
 		response.setDate(task.getDateStart());
 		
 		// Mail try catch
@@ -83,10 +76,9 @@ public class TaskService {
 		Task task = taskDao.load(id);
 		TaskResponseDto dto=new TaskResponseDto();
 		dto.setName(task.getName());
-		dto.setName(task.getTaskName());
 		dto.setBody(task.getBody());
-		dto.setUserId(task.getUser());
-		dto.setProjectId(task.getProject());
+		dto.setUserId(task.getUser().getId());
+		dto.setProjectId(task.getProject().getId());
 		dto.setState(task.getState());
 		dto.setDateStart(task.getDateStart());
 		dto.setDateEnd(task.getDateEnd());
@@ -108,9 +100,9 @@ public class TaskService {
 		return response;
 	}
 	
-	public TaskResponseDto changeUser (TaskRequestDto dto) throws EntityNotFoundException {
+	public TaskResponseDto changeUser (TaskChangeRequestDto dto) throws EntityNotFoundException {
 		{
-			Task task=taskDao.load(key);
+			Task task=taskDao.load(dto.getTaskId());
 			
 			
 			Comment comment=new Comment();
@@ -124,8 +116,8 @@ public class TaskService {
 			TaskResponseDto response=new TaskResponseDto();
 			
 			response.setName(task.getName());
-			response.setUser(task.getUser());
-			response.setProject(task.getProject());
+			response.setUserId(task.getUser().getId());
+			response.setProjectId(task.getProject().getId());
 			response.setDate(task.getDateStart());
 			
 			
