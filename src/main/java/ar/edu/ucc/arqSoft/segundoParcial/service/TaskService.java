@@ -135,7 +135,17 @@ public class TaskService {
 		{
 			Task task=taskDao.load(dto.getTaskId());
 			
-			
+			if(task.getState().getName()=="Closed")
+			{
+				if(stateDao.load(dto.getStateId()).getName()=="Open")
+				{
+					task.setDateEnd(null);
+				}
+				else
+				{
+					throw new TaskClosedException();
+				}
+			}
 			
 			Comment comment=new Comment();
 			comment.setDate(Calendar.getInstance().getTime());
