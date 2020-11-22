@@ -42,6 +42,12 @@ public class TaskController {
 		//return null;
     }
     
+    @RequestMapping(value="/taskName/{name}", method=RequestMethod.GET, produces= MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody List<TaskResponseDto> getTasksByName(@PathVariable("name") String name) throws EntityNotFoundException, BadRequestException {
+    	return taskService.getAllTasksByName(name);
+		//return null;
+    }
+    
     
     @RequestMapping(method=RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces= MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody TaskResponseDto saveTask(@RequestBody TaskRequestDto request) throws EntityNotFoundException, BadRequestException, TaskClosedException

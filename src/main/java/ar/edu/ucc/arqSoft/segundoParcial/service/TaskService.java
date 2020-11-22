@@ -90,6 +90,21 @@ public class TaskService {
 		return dto;
 		
 	}
+	
+	public List<TaskResponseDto> getAllTasksByName(String name) {
+		List<Task> tasks = taskDao.getAll();
+		
+		List<TaskResponseDto> response = new ArrayList<TaskResponseDto>();
+		 
+		for (Task task : tasks) {
+			if(task.getName()==name)
+			response.add((TaskResponseDto) new ModelDtoConverter().convertToDto(task, new TaskResponseDto()));
+		}
+		
+		return response;
+	}
+	
+	
 	public List<TaskResponseDto> getAllTasks() {
 		List<Task> tasks = taskDao.getAll();
 		
