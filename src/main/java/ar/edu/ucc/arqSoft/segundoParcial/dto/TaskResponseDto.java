@@ -24,7 +24,7 @@ public class TaskResponseDto implements DtoEntity {
 	
 	private Date dateEnd;
 	
-	private Set<Comment> comments;
+	private Set<CommentResponseDto> comments;
 	
 	public String getName() {
 		return name;
@@ -90,11 +90,22 @@ public class TaskResponseDto implements DtoEntity {
 		this.dateEnd = dateend;
 	}
 
-	public Set<Comment> getComments() {
+	public Set<CommentResponseDto> getComments() {
 		return comments;
 	}
 
-	public void setComments(Set<Comment> comments) {
+	public void setComments(Set<CommentResponseDto> comments) {
 		this.comments = comments;
+	}
+	
+	public void addComments(Comment comment)
+	{
+		CommentResponseDto commentDto=new CommentResponseDto();
+		commentDto.setBody(comment.getBody());
+		commentDto.setDate(comment.getDate());
+		commentDto.setName(comment.getName());
+		commentDto.setTaskId(comment.getTask().getId());
+		commentDto.setUserId(comment.getUser().getId());
+		this.comments.add(commentDto);
 	}
 }

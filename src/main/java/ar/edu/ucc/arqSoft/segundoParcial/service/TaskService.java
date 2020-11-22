@@ -84,9 +84,10 @@ public class TaskService {
 		dto.setState(task.getState());
 		dto.setDateStart(task.getDateStart());
 		dto.setDateEnd(task.getDateEnd());
-		dto.setComments(task.getComments());
-		
-		
+		for(Comment comment : task.getComments())
+		{
+			dto.addComments(comment);
+		}
 		return dto;
 		
 	}
