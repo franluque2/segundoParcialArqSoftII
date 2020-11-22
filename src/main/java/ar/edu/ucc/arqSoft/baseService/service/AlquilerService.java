@@ -12,6 +12,7 @@ import ar.edu.ucc.arqSoft.baseService.dao.SocioDao;
 import ar.edu.ucc.arqSoft.baseService.dto.AlquilerRequestDto;
 import ar.edu.ucc.arqSoft.baseService.dto.AlquilerResponseDto;
 import ar.edu.ucc.arqSoft.baseService.model.Alquiler;
+import ar.edu.ucc.arqSoft.common.exception.BadRequestException;
 import ar.edu.ucc.arqSoft.common.exception.EntityNotFoundException;
 
 @Service
@@ -28,7 +29,7 @@ public class AlquilerService {
 	private SocioDao socioDao;
 	
 	
-	public AlquilerResponseDto registrarAlquiler (AlquilerRequestDto dto) throws EntityNotFoundException {
+	public AlquilerResponseDto registrarAlquiler (AlquilerRequestDto dto) throws EntityNotFoundException, BadRequestException {
 		
 		Alquiler alquiler = new Alquiler();
 		

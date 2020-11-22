@@ -28,6 +28,17 @@ public class State extends GenericObject {
 	
 	@OneToMany(mappedBy="state", fetch = FetchType.LAZY)
 	private Set<Task> tasks;
+	
+	@OneToMany(mappedBy="project", fetch = FetchType.LAZY)
+	private Set<Project> projects;
+
+	public Set<Project> getProjects() {
+		return projects;
+	}
+
+	public void setProjects(Set<Project> projects) {
+		this.projects = projects;
+	}
 
 	public String getName() {
 		return name;

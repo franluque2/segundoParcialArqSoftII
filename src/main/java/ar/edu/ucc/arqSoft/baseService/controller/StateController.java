@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ar.edu.ucc.arqSoft.baseService.dto.StateRequestDto;
 import ar.edu.ucc.arqSoft.baseService.dto.StateResponseDto;
 import ar.edu.ucc.arqSoft.baseService.service.StateService;
+import ar.edu.ucc.arqSoft.common.exception.BadRequestException;
 
 @Controller
 @RequestMapping("/state")
@@ -36,7 +37,7 @@ public class StateController {
     }
     
     @RequestMapping(method=RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces= MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody StateResponseDto saveSatate(@RequestBody StateRequestDto request)
+    public @ResponseBody StateResponseDto saveSatate(@RequestBody StateRequestDto request) throws BadRequestException
     {
         return stateService.insertState(request);
     }

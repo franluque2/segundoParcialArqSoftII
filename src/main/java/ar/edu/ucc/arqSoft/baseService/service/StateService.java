@@ -12,6 +12,7 @@ import ar.edu.ucc.arqSoft.baseService.dto.StateRequestDto;
 import ar.edu.ucc.arqSoft.baseService.dto.StateResponseDto;
 import ar.edu.ucc.arqSoft.baseService.model.State;
 import ar.edu.ucc.arqSoft.common.dto.ModelDtoConverter;
+import ar.edu.ucc.arqSoft.common.exception.BadRequestException;
 import ar.edu.ucc.arqSoft.common.exception.EntityNotFoundException;
 
 @Service
@@ -41,7 +42,7 @@ public class StateService {
 	}
 	
 	
-	public StateResponseDto insertState(StateRequestDto request) {
+	public StateResponseDto insertState(StateRequestDto request) throws BadRequestException {
 		
 		State state = (State) new ModelDtoConverter().convertToEntity(new State(), request);
 		

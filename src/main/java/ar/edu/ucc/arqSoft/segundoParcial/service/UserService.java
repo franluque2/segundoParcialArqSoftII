@@ -1,10 +1,14 @@
 package ar.edu.ucc.arqSoft.segundoParcial.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.edu.ucc.arqSoft.common.dto.ModelDtoConverter;
 import ar.edu.ucc.arqSoft.common.exception.BadRequestException;
 import ar.edu.ucc.arqSoft.common.exception.EntityNotFoundException;
 import ar.edu.ucc.arqSoft.segundoParcial.dao.UserDao;
@@ -47,7 +51,7 @@ public class UserService {
 		return response;
 	}
 	
-	public UserResponseDto getUserByID (Long id) throws EntityNotFoundException, BadRequestException {
+	public UserResponseDto getUserById (Long id) throws EntityNotFoundException, BadRequestException {
 		
 		if (id <= 0) {
 			throw new BadRequestException();
@@ -71,6 +75,30 @@ public class UserService {
 		return dto;
 	}
 	
+	public List<UserResponseDto> getAllUsers(){
+		
+		List<User> users = userDao.getAll();
+		
+		List<UserResponseDto> response = new ArrayList<UserResponseDto>();
+		
+		for (User user : users) {
+			response.add((UserResponseDto) new ModelDtoConverter().convertToDto(user, new UserResponseDto()));
+		}
+		
+		return response;
+	}
+	
+	public UserResponseDto getUserByName (String name)throws EntityNotFoundException, BadRequestException {
+		
+		List<User> users = userDao.getAll();
+		
+		for (User user : users) {
+			if(user.getName() == name) {
+				return getUserById(user.getId());
+			}
+		}
+	return null;
+	}
 }
 
 

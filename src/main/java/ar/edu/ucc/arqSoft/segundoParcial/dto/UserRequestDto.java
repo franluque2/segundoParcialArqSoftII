@@ -30,16 +30,6 @@ public class UserRequestDto implements DtoEntity {
 	
 	private String permits;
 	
-	private Set<Project> projects;
-	
-	public Set<Project> getProjects() {
-		return projects;
-	}
-
-	public void setProjects(Set<Project> projects) {
-		this.projects = projects;
-	}
-
 	public String getPermits() {
 		return permits;
 	}

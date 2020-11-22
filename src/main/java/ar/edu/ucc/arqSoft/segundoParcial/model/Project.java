@@ -5,7 +5,11 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -19,7 +23,13 @@ public class Project extends GenericObject {
 	@ManyToMany(mappedBy = "projects")
 	private Set<User> users;
 	
-	public Set<User> getUsers() {return users;};	
+	@OneToMany(mappedBy = "task" , fetch = FetchType.LAZY)
+	private Set<Task> tasks;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="STATE_ID")
+	private State state;
+
 	
 	@NotNull
 	@Size(min = 1, max = 400)
@@ -39,9 +49,25 @@ public class Project extends GenericObject {
 	@Column(name = "FINISH")
 	private Date finish;
 	
-	@NotNull
-	@Column(name = "STATE") //deberia de ser una relacion con state?
-	private String state;
+	public Set<Task> getTasks() {
+		return tasks;
+	}
+
+	public void setTasks(Set<Task> tasks) {
+		this.tasks = tasks;
+	}
+
+	public State getState() {
+		return state;
+	}
+
+	public void setState(State state) {
+		this.state = state;
+	}
+
+	public Set<User> getUsers() {
+		return users;
+	}
 
 	public String getName() {
 		return name;
@@ -73,14 +99,6 @@ public class Project extends GenericObject {
 
 	public void setFinish(Date finish) {
 		this.finish = finish;
-	}
-
-	public String getState() {
-		return state;
-	}
-
-	public void setState(String state) {
-		this.state = state;
 	}
 
 	public void setUsers(Set<User> users) {
