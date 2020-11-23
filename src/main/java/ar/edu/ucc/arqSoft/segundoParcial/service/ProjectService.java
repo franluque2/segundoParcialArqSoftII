@@ -15,6 +15,7 @@ import ar.edu.ucc.arqSoft.segundoParcial.dao.ProjectDao;
 import ar.edu.ucc.arqSoft.segundoParcial.dto.ProjectRequestDto;
 import ar.edu.ucc.arqSoft.segundoParcial.dto.ProjectResponseDto;
 import ar.edu.ucc.arqSoft.segundoParcial.model.Project;
+import ar.edu.ucc.arqSoft.segundoParcial.model.Task;
 
 @Service
 @Transactional
@@ -31,9 +32,9 @@ public class ProjectService {
 		project.setDescription(dto.getDescription());
 		project.setStart(Calendar.getInstance().getTime());
 		project.setFinish(dto.getFinish());
-		project.setState(dto.getState());
-		project.setUsers(dto.getUsers());
-		project.setTasks(dto.getTasks());
+		//project.setState(dto.getState());
+		//project.setUsers(dto.getUsers());
+		//project.setTasks(dto.getTasks());
 		
 		projectDao.insert(project);
 		
@@ -44,8 +45,9 @@ public class ProjectService {
 		response.setFinish(project.getFinish());
 		response.setStart(project.getStart());
 		response.setState(project.getState());
-		response.setTasks(project.getTasks());
-		response.setUsers(project.getUsers());
+		//response.setTasks(project.getTasks());
+		//response.setTasks(project.getTasks());
+		//response.setUsers(project.getUsers());
 		
 		return response;
 	}
@@ -62,9 +64,9 @@ public class ProjectService {
 		dto.setDescription(project.getDescription());
 		dto.setStart(project.getStart());
 		dto.setFinish(project.getFinish());
-		dto.setState(project.getState());
-		dto.setUsers(project.getUsers());
-		dto.setTasks(project.getTasks());
+		dto.setState(project.getState().getId());
+		//dto.setUsers(project.getUsers());
+		//dto.setTasks(project.getTasks());
 		
 		return dto;
 	}
@@ -75,10 +77,35 @@ public class ProjectService {
 		
 		List<ProjectResponseDto> response = new ArrayList<ProjectResponseDto>();
 		
+		for(Project project : projects) {
+			ProjectResponseDto responseProject = new ProjectResponseDto();
+			
+			//get all tasks
+			if(!project.getTasks().isEmpty()) {
+				for(Task task : project.getTasks()) {
+					responseProject.addTask(task);
+				}
+			}
+			
+			responseProject.setName(project.getName());
+			responseProject.setDescription(project.getDescription());
+			responseProject.setStart(project.getStart());
+			responseProject.setFinish(project.getFinish());
+			responseProject.setStateId(project.getState().getId());
+			
+			response.add(responseProject);
+			
+		}
+		
+		/*
+		List<Project> projects = projectDao.getAll();
+		
+		List<ProjectResponseDto> response = new ArrayList<ProjectResponseDto>();
+		
 		for (Project project : projects) {
 			response.add((ProjectResponseDto) new ModelDtoConverter().convertToDto(project, new ProjectResponseDto()));
 		}
-			
+		*/	
 		return response;
 	}
 	

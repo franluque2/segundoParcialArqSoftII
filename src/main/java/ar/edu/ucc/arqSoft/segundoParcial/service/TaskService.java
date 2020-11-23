@@ -116,11 +116,11 @@ public class TaskService {
 			responseTask.setBody(task.getBody());
 			
 			if(!task.getComments().isEmpty()) {
-			for(Comment comment : task.getComments())
-			{
-				responseTask.addComments(comment);;
+				for(Comment comment : task.getComments())
+				{
+					responseTask.addComments(comment);;
+				}
 			}
-		}
 			responseTask.setDateStart(task.getDateStart());
 			responseTask.setDateEnd(task.getDateEnd());
 			responseTask.setName(task.getName());

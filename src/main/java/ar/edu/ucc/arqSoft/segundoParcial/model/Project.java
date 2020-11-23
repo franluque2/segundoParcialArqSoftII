@@ -27,7 +27,6 @@ public class Project extends GenericObject {
 	@OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
 	private Set<Task> tasks;
 	
-	@NotNull
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="STATE_ID")
 	private State state;

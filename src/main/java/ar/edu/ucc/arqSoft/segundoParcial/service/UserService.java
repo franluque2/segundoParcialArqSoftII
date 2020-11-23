@@ -47,6 +47,7 @@ public class UserService {
 		response.setLastName(user.getLastName());
 		response.setUsername(user.getUsername());
 		response.setPermits(user.getPermits());
+		response.setProjects(user.getProjects());
 		
 		return response;
 	}
@@ -70,7 +71,7 @@ public class UserService {
 		dto.setBirthday(user.getBirthday());
 		dto.setUsername(user.getUsername());
 		dto.setPassword(user.getPassword());
-		dto.setProjects(user.getProjects());
+		//dto.setProjects(user.getProjects());
 		
 		return dto;
 	}

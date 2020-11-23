@@ -1,6 +1,7 @@
 package ar.edu.ucc.arqSoft.segundoParcial.dto;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import ar.edu.ucc.arqSoft.common.dto.DtoEntity;
@@ -30,14 +31,14 @@ public class UserResponseDto implements DtoEntity {
 	
 	private String permits;
 	
-	private Set<Project> projects;
+	private Set<ProjectResponseDto> projects = new HashSet<ProjectResponseDto>();
 	
-	public void setProjects(Set<Project> projects) {
-		this.projects = projects;
+	public Set<ProjectResponseDto> getProjects() {
+		return projects;
 	}
 
-	public Set<Project> getProjects() {
-		return projects;
+	public void setProjects(Set<ProjectResponseDto> projects) {
+		this.projects = projects;
 	}
 
 	public String getAdress() {
