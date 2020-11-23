@@ -31,5 +31,17 @@ curl -X POST -H 'Content-Type: application/json' -i http://localhost:8080/baseSe
 
 curl -X POST -H 'Content-Type: application/json' -i http://localhost:8080/baseService/userAdd --data '{"userId":"1","projectId":"2"}'
 
+#obtener projecto por nombre 
+
+http://localhost:8080/baseService/projectName/segundoParcial
+
+#obtener user por nombre 
+
+http://localhost:8080/baseService/userName/FACUNDO
+
+#obtener task por nombre
+
+
+
 
 
