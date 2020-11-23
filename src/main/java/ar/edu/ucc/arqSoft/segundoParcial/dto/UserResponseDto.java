@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import ar.edu.ucc.arqSoft.common.dto.DtoEntity;
+import ar.edu.ucc.arqSoft.segundoParcial.model.Project;
+import ar.edu.ucc.arqSoft.segundoParcial.model.Task;
 
 public class UserResponseDto implements DtoEntity {
 	
@@ -38,6 +40,23 @@ public class UserResponseDto implements DtoEntity {
 
 	public void setProjects(Set<ProjectResponseDto> projects) {
 		this.projects = projects;
+	}
+	
+	public void addProject (Project project) {
+		
+		ProjectResponseDto dto = new ProjectResponseDto();
+		dto.setName(project.getName());
+		dto.setDescription(project.getDescription());
+		dto.setStart(project.getStart());
+		dto.setFinish(project.getFinish());
+		dto.setStateId(project.getState().getId());
+		//addTasks
+		if(!project.getTasks().isEmpty()) {
+			for(Task task : project.getTasks()) {
+			dto.addTask(task);			
+		}
+		}
+		this.projects.add(dto);
 	}
 
 	public String getAdress() {

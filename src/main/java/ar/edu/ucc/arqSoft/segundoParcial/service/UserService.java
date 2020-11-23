@@ -84,6 +84,9 @@ public class UserService {
 		dto.setBirthday(user.getBirthday());
 		dto.setUsername(user.getUsername());
 		dto.setPassword(user.getPassword());
+		for(Project projects : user.getProjects()) {
+			dto.addProject(projects);
+		}
 		//dto.setProjects(user.getProjects());
 		
 		return dto;
@@ -96,9 +99,24 @@ public class UserService {
 		List<UserResponseDto> response = new ArrayList<UserResponseDto>();
 		
 		for (User user : users) {
-			response.add((UserResponseDto) new ModelDtoConverter().convertToDto(user, new UserResponseDto()));
-		}
+			UserResponseDto dto = new UserResponseDto();
+			dto.setAdress(user.getAdress());
+			dto.setBirthday(user.getBirthday());
+			dto.setDNI(user.getDNI());
+			dto.setEmail(user.getEmail());
+			dto.setInscription(user.getInscription());
+			dto.setLastName(user.getLastName());
+			dto.setPassword(user.getPassword());
+			dto.setPermits(user.getPermits());
+			dto.setPhone(user.getPhone());
+			dto.setName(user.getName());
+			dto.setUsername(user.getUsername());
 		
+			for(Project project : user.getProjects()) {
+				dto.addProject(project);
+			}
+			response.add(dto);
+		}
 		return response;
 	}
 	
@@ -135,6 +153,9 @@ public class UserService {
 		response.setPassword(user.getPassword());
 		response.setPermits(user.getPermits());
 		response.setPhone(user.getPhone());
+		for(Project projects : user.getProjects()) {
+			response.addProject(projects);
+		}
 		
 		return response;
 	}

@@ -26,3 +26,10 @@ curl -X POST -H 'Content-Type: application/json' -i http://localhost:8080/baseSe
 # post para cambiar el estado de una tarea 
 
 curl -X POST -H 'Content-Type: application/json' -i http://localhost:8080/baseService/taskChangeState --data '{"stateId":"1","taskId":"1"}'
+
+#post para agregar un projecto a un usuario (cambiar cuando lo complete)
+
+curl -X POST -H 'Content-Type: application/json' -i http://localhost:8080/baseService/userAdd --data '{"userId":"1","projectId":"2"}'
+
+
+

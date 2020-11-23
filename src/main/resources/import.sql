@@ -20,3 +20,6 @@ insert into TASK (ID,NAME,BODY,USER_ID,PROYECT_ID,STATE_ID,DATE_START,DATE_END) 
 insert into COMMENT (ID,NAME,BODY,USER_ID,TASK_ID,DATE) values (1,"Hay un problema legal","Esto se llama espionaje corporativo y creo que es ilegal",3,4,'2006-11-23 23:59:00')
 insert into COMMENT (ID,NAME,BODY,USER_ID,TASK_ID,DATE) values (2,"Pues Solucionenlo","La gente lo hace todo el tiempo",1,4,'2006-11-23 23:59:30')
 insert into COMMENT (ID,NAME,BODY,USER_ID,TASK_ID,DATE) values (3,"Terminado","Easy peazy",2,1,'2020-11-23 23:59:00')
+
+insert into USER_PROJECT(USER_ID,PROJECT_ID) values (1,1);
+

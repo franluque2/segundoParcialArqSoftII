@@ -105,7 +105,16 @@ public class ProjectResponseDto implements DtoEntity {
 	public void addUser(User user) {
 		UserResponseDto userDto = new UserResponseDto();
 		
+		userDto.setAdress(user.getAdress());
+		userDto.setBirthday(user.getBirthday());
+		userDto.setDNI(user.getDNI());
+		userDto.setEmail(user.getEmail());
+		userDto.setInscription(user.getInscription());
+		userDto.setLastName(user.getLastName());
 		userDto.setName(user.getName());
+		userDto.setPassword(user.getPassword());
+		userDto.setPermits(user.getPermits());
+		userDto.setUsername(user.getUsername());
 
 		this.users.add(userDto);
 }
