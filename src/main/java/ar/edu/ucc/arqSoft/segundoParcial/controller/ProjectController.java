@@ -33,7 +33,6 @@ public class ProjectController {
     @RequestMapping(value="/{id}", method=RequestMethod.GET, produces= MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody ProjectResponseDto getUserById(@PathVariable("id") Long id) throws EntityNotFoundException, BadRequestException {
     	return projectService.getProjectById(id);
-		//return null;
     }
     
     @RequestMapping(method=RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces= MediaType.APPLICATION_JSON_VALUE)

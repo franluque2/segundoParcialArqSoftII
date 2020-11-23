@@ -98,7 +98,7 @@ public class TaskService {
 		List<TaskResponseDto> response = new ArrayList<TaskResponseDto>();
 		 
 		for (Task task : tasks) {
-			if(task.getName()==name)
+			if(task.getName().equalsIgnoreCase(name))
 			response.add((TaskResponseDto) new ModelDtoConverter().convertToDto(task, new TaskResponseDto()));
 		}
 		
@@ -138,7 +138,7 @@ public class TaskService {
 		{
 			Task task=taskDao.load(dto.getTaskId());
 			
-			if(taskDao.load(dto.getTaskId()).getState().getName()=="Closed")
+			if(taskDao.load(dto.getTaskId()).getState().getName().equalsIgnoreCase("Closed"))
 			{
 				throw new TaskClosedException();
 			}
@@ -167,9 +167,9 @@ public class TaskService {
 		{
 			Task task=taskDao.load(dto.getTaskId());
 			
-			if(task.getState().getName()=="Closed")
+			if(task.getState().getName().equalsIgnoreCase("Closed"))
 			{
-				if(stateDao.load(dto.getStateId()).getName()=="Open")
+				if(stateDao.load(dto.getStateId()).getName().equalsIgnoreCase("Open"))
 				{
 					task.setDateEnd(null);
 				}
@@ -186,7 +186,7 @@ public class TaskService {
 			comment.setName("Cambio de Estado");
 			task.setState(stateDao.load(dto.getStateId()));
 			task.addComment(comment);
-			if(task.getState().getName()=="Closed")
+			if(task.getState().getName().equalsIgnoreCase("Closed"))
 			{
 				task.setDateEnd(Calendar.getInstance().getTime());
 			}
@@ -198,8 +198,7 @@ public class TaskService {
 			response.setProjectId(task.getProject().getId());
 			response.setDateStart(task.getDateStart());
 			response.setState(task.getState().getId());
-			
-			
+		
 			return response;
 		}
 	} 

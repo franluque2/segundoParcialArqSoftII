@@ -13,10 +13,12 @@ import ar.edu.ucc.arqSoft.common.exception.BadRequestException;
 import ar.edu.ucc.arqSoft.common.exception.EntityNotFoundException;
 import ar.edu.ucc.arqSoft.segundoParcial.dao.ProjectDao;
 import ar.edu.ucc.arqSoft.segundoParcial.dao.UserDao;
+import ar.edu.ucc.arqSoft.segundoParcial.dto.TaskResponseDto;
 import ar.edu.ucc.arqSoft.segundoParcial.dto.UserAddProjectDto;
 import ar.edu.ucc.arqSoft.segundoParcial.dto.UserRequestDto;
 import ar.edu.ucc.arqSoft.segundoParcial.dto.UserResponseDto;
 import ar.edu.ucc.arqSoft.segundoParcial.model.Project;
+import ar.edu.ucc.arqSoft.segundoParcial.model.Task;
 import ar.edu.ucc.arqSoft.segundoParcial.model.User;
 
 @Service
@@ -87,7 +89,6 @@ public class UserService {
 		for(Project projects : user.getProjects()) {
 			dto.addProject(projects);
 		}
-		//dto.setProjects(user.getProjects());
 		
 		return dto;
 	}
@@ -121,16 +122,36 @@ public class UserService {
 	}
 	
 	public UserResponseDto getUserByName (String name)throws EntityNotFoundException, BadRequestException {
-		
 		List<User> users = userDao.getAll();
-		
-		for (User user : users) {
-			if(user.getName() == name) {
-				return getUserById(user.getId());
-			}
+		 
+		if (name.isEmpty()) {
+			throw new BadRequestException();
 		}
-	return null;
+		
+		UserResponseDto dto = new UserResponseDto();
+		
+		for (User USER : users) {
+			
+			if(USER.getName().equalsIgnoreCase(name)) {
+						
+						dto.setName(USER.getName());
+						dto.setLastName(USER.getLastName());
+						dto.setAdress(USER.getAdress());
+						dto.setEmail(USER.getEmail());
+						dto.setPhone(USER.getPhone());
+						dto.setDNI(USER.getDNI());
+						dto.setInscription(USER.getInscription());
+						dto.setBirthday(USER.getBirthday());
+						dto.setUsername(USER.getUsername());
+						dto.setPassword(USER.getPassword());
+						for(Project projects : USER.getProjects()) {
+							dto.addProject(projects);
+						}
+						
+				}
 	}
+		return dto;
+		}
 	
 	public UserResponseDto addProject (UserAddProjectDto dto) throws EntityNotFoundException, BadRequestException {
 		

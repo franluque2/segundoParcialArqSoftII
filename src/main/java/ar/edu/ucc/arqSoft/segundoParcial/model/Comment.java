@@ -12,9 +12,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import ar.edu.ucc.arqSoft.common.model.GenericObject;
-import ar.edu.ucc.arqSoft.segundoParcial.model.User;
-import ar.edu.ucc.arqSoft.segundoParcial.model.Task;
-
 
 @Entity
 @Table(name = "COMMENT")

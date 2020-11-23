@@ -16,6 +16,7 @@ insert into TASK (ID,NAME,BODY,USER_ID,PROYECT_ID,STATE_ID,DATE_START,DATE_END) 
 insert into TASK (ID,NAME,BODY,USER_ID,PROYECT_ID,STATE_ID,DATE_START,DATE_END) values (2,"Pulir todo y agregar interfaz","Esto deberia poder accederse de forma grafica",2,1,1,'2020-11-23 23:59:00',NULL)
 insert into TASK (ID,NAME,BODY,USER_ID,PROYECT_ID,STATE_ID,DATE_START,DATE_END) values (3,"Investigar que esta haciendo facebook bien","Por algo la gente usa esa red social",1,2,2,'2006-11-23 4:00:00','2006-11-23 23:59:00')
 insert into TASK (ID,NAME,BODY,USER_ID,PROYECT_ID,STATE_ID,DATE_START,DATE_END) values (4,"Copiar codigo de facebook","No debe ser tan dificil",3,2,2,'2006-11-23 4:00:00','2006-11-23 23:59:00')
+insert into TASK (ID,NAME,BODY,USER_ID,PROYECT_ID,STATE_ID,DATE_START,DATE_END) values (2,"prueba","Esto es una prueba",2,1,1,'2020-11-23 23:59:00',NULL)
 
 insert into COMMENT (ID,NAME,BODY,USER_ID,TASK_ID,DATE) values (1,"Hay un problema legal","Esto se llama espionaje corporativo y creo que es ilegal",3,4,'2006-11-23 23:59:00')
 insert into COMMENT (ID,NAME,BODY,USER_ID,TASK_ID,DATE) values (2,"Pues Solucionenlo","La gente lo hace todo el tiempo",1,4,'2006-11-23 23:59:30')

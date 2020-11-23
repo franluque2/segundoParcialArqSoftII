@@ -3,7 +3,6 @@ package ar.edu.ucc.arqSoft.segundoParcial.dto;
 import java.util.Date;
 
 import ar.edu.ucc.arqSoft.common.dto.DtoEntity;
-import ar.edu.ucc.arqSoft.segundoParcial.model.User;
 
 public class CommentResponseDto implements DtoEntity {
 	private String name;

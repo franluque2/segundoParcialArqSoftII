@@ -33,7 +33,6 @@ public class UserController {
     @RequestMapping(value="/{id}", method=RequestMethod.GET, produces= MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody UserResponseDto getUserById(@PathVariable("id") Long id) throws EntityNotFoundException, BadRequestException {
     	return userService.getUserById(id);
-		//return null;
     }
     
     @RequestMapping(method=RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces= MediaType.APPLICATION_JSON_VALUE)

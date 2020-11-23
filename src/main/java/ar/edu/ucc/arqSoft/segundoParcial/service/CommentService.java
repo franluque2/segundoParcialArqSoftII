@@ -12,18 +12,12 @@ import ar.edu.ucc.arqSoft.common.dto.ModelDtoConverter;
 import ar.edu.ucc.arqSoft.common.exception.BadRequestException;
 import ar.edu.ucc.arqSoft.common.exception.EntityNotFoundException;
 import ar.edu.ucc.arqSoft.segundoParcial.dao.CommentDao;
-import ar.edu.ucc.arqSoft.segundoParcial.dao.ProjectDao;
-import ar.edu.ucc.arqSoft.segundoParcial.dao.StateDao;
 import ar.edu.ucc.arqSoft.segundoParcial.dao.TaskDao;
 import ar.edu.ucc.arqSoft.segundoParcial.dao.UserDao;
 import ar.edu.ucc.arqSoft.segundoParcial.dto.CommentRequestDto;
 import ar.edu.ucc.arqSoft.segundoParcial.dto.CommentResponseDto;
-import ar.edu.ucc.arqSoft.segundoParcial.dto.TaskChangeRequestDto;
-import ar.edu.ucc.arqSoft.segundoParcial.dto.TaskRequestDto;
-import ar.edu.ucc.arqSoft.segundoParcial.dto.TaskResponseDto;
 import ar.edu.ucc.arqSoft.segundoParcial.exception.TaskClosedException;
 import ar.edu.ucc.arqSoft.segundoParcial.model.Comment;
-import ar.edu.ucc.arqSoft.segundoParcial.model.Task;
 
 @Service
 @Transactional

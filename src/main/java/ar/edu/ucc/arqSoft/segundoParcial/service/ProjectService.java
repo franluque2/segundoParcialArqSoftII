@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import ar.edu.ucc.arqSoft.common.dto.ModelDtoConverter;
 import ar.edu.ucc.arqSoft.common.exception.BadRequestException;
 import ar.edu.ucc.arqSoft.common.exception.EntityNotFoundException;
 import ar.edu.ucc.arqSoft.segundoParcial.dao.ProjectDao;
@@ -118,14 +117,52 @@ public class ProjectService {
 	
 	public ProjectResponseDto getProjectByName (String name) throws EntityNotFoundException, BadRequestException {
 		
+		if (name.isEmpty()) {
+			throw new BadRequestException();
+		}
+		
+		List<Project> projects = projectDao.getAll();
+		
+		ProjectResponseDto response = new ProjectResponseDto();
+		
+		for(Project project : projects) {
+			
+			if(project.getName().equalsIgnoreCase(name)) {
+		
+					response.setName(project.getName());
+					response.setDescription(project.getDescription());
+					response.setStart(project.getStart());
+					response.setFinish(project.getFinish());
+					response.setStateId(project.getState().getId());
+		
+					//get all tasks
+					if(!project.getTasks().isEmpty()) {
+						for(Task task : project.getTasks()) {
+							response.addTask(task);
+						}
+					}
+					//users
+					if(!project.getUsers().isEmpty()) {
+						for(User user : project.getUsers()) {
+							response.addUser(user);
+						}
+					}
+			}
+				}
+
+		
+		return response;
+		
+		/*
 		List<Project> projects = projectDao.getAll();
 		
 		for (Project project : projects) {
-			if(project.getName() == name) {
+			if(project.getName().equalsIgnoreCase(name)) {
 				return getProjectById(project.getId());
 			}
 		}
 		return null;
+		*/
 	}
 	
 	

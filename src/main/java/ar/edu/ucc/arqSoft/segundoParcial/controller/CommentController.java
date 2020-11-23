@@ -34,12 +34,10 @@ public class CommentController {
     @RequestMapping(value="/{id}", method=RequestMethod.GET, produces= MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody CommentResponseDto getCommentById(@PathVariable("id") Long id) throws EntityNotFoundException, BadRequestException {
     	return commentService.getCommentById(id);
-		//return null;
     }
     @RequestMapping(value="/task/{id}", method=RequestMethod.GET, produces= MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody List<CommentResponseDto> getAllCommentsByTaskId(@PathVariable("id") Long id) throws EntityNotFoundException, BadRequestException {
     	return commentService.getAllCommentsFromTask(id);
-		//return null;
     }
     
     @RequestMapping(method=RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces= MediaType.APPLICATION_JSON_VALUE)
