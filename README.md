@@ -27,19 +27,19 @@ curl -X POST -H 'Content-Type: application/json' -i http://localhost:8080/baseSe
 
 curl -X POST -H 'Content-Type: application/json' -i http://localhost:8080/baseService/taskChangeState --data '{"stateId":"1","taskId":"1"}'
 
-#post para agregar un projecto a un usuario (cambiar cuando lo complete)
+# post para agregar un projecto a un usuario (cambiar cuando lo complete)
 
 curl -X POST -H 'Content-Type: application/json' -i http://localhost:8080/baseService/userAdd --data '{"userId":"1","projectId":"2"}'
 
-#obtener projecto por nombre 
+# obtener projecto por nombre 
 
 http://localhost:8080/baseService/projectName/segundoParcial
 
-#obtener user por nombre 
+# obtener user por nombre 
 
 http://localhost:8080/baseService/userName/FACUNDO
 
-#obtener task por nombre
+# obtener task por nombre
 
 
 
