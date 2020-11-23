@@ -170,4 +170,8 @@ public class User extends GenericObject {
 	public void setProjects(Set<Project> projects) {
 		this.projects = projects;
 	}
+	
+	public void addProject(Project project) {
+		this.projects.add(project);	
+	}
 }

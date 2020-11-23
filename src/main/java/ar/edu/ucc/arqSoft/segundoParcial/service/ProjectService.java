@@ -16,6 +16,7 @@ import ar.edu.ucc.arqSoft.segundoParcial.dto.ProjectRequestDto;
 import ar.edu.ucc.arqSoft.segundoParcial.dto.ProjectResponseDto;
 import ar.edu.ucc.arqSoft.segundoParcial.model.Project;
 import ar.edu.ucc.arqSoft.segundoParcial.model.Task;
+import ar.edu.ucc.arqSoft.segundoParcial.model.User;
 
 @Service
 @Transactional
@@ -44,7 +45,7 @@ public class ProjectService {
 		response.setDescription(project.getDescription());
 		response.setFinish(project.getFinish());
 		response.setStart(project.getStart());
-		response.setState(project.getState());
+		//response.setState(project.getState());
 		//response.setTasks(project.getTasks());
 		//response.setTasks(project.getTasks());
 		//response.setUsers(project.getUsers());
@@ -59,16 +60,26 @@ public class ProjectService {
 		}
 		
 		Project project = projectDao.load(id);
-		ProjectResponseDto dto = new ProjectResponseDto();
-		dto.setName(project.getName());
-		dto.setDescription(project.getDescription());
-		dto.setStart(project.getStart());
-		dto.setFinish(project.getFinish());
-		dto.setState(project.getState().getId());
-		//dto.setUsers(project.getUsers());
-		//dto.setTasks(project.getTasks());
+		ProjectResponseDto response = new ProjectResponseDto();
+		response.setName(project.getName());
+		response.setDescription(project.getDescription());
+		response.setStart(project.getStart());
+		response.setFinish(project.getFinish());
 		
-		return dto;
+		//get all tasks
+		if(!project.getTasks().isEmpty()) {
+			for(Task task : project.getTasks()) {
+				response.addTask(task);
+			}
+		}
+		//users
+		if(!project.getUsers().isEmpty()) {
+			for(User user : project.getUsers()) {
+				response.addUser(user);
+			}
+		}
+		
+		return response;
 	}
 	
 	public List<ProjectResponseDto> getAllProjects () throws EntityNotFoundException, BadRequestException{
@@ -86,6 +97,12 @@ public class ProjectService {
 					responseProject.addTask(task);
 				}
 			}
+			//users
+			if(!project.getUsers().isEmpty()) {
+				for(User user : project.getUsers()) {
+					responseProject.addUser(user);
+				}
+			}
 			
 			responseProject.setName(project.getName());
 			responseProject.setDescription(project.getDescription());
@@ -96,16 +113,6 @@ public class ProjectService {
 			response.add(responseProject);
 			
 		}
-		
-		/*
-		List<Project> projects = projectDao.getAll();
-		
-		List<ProjectResponseDto> response = new ArrayList<ProjectResponseDto>();
-		
-		for (Project project : projects) {
-			response.add((ProjectResponseDto) new ModelDtoConverter().convertToDto(project, new ProjectResponseDto()));
-		}
-		*/	
 		return response;
 	}
 	

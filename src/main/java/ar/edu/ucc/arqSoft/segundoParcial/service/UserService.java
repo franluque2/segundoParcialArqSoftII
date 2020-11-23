@@ -11,9 +11,12 @@ import org.springframework.stereotype.Service;
 import ar.edu.ucc.arqSoft.common.dto.ModelDtoConverter;
 import ar.edu.ucc.arqSoft.common.exception.BadRequestException;
 import ar.edu.ucc.arqSoft.common.exception.EntityNotFoundException;
+import ar.edu.ucc.arqSoft.segundoParcial.dao.ProjectDao;
 import ar.edu.ucc.arqSoft.segundoParcial.dao.UserDao;
+import ar.edu.ucc.arqSoft.segundoParcial.dto.UserAddProjectDto;
 import ar.edu.ucc.arqSoft.segundoParcial.dto.UserRequestDto;
 import ar.edu.ucc.arqSoft.segundoParcial.dto.UserResponseDto;
+import ar.edu.ucc.arqSoft.segundoParcial.model.Project;
 import ar.edu.ucc.arqSoft.segundoParcial.model.User;
 
 @Service
@@ -22,6 +25,9 @@ public class UserService {
 	
 	@Autowired
 	private UserDao userDao;
+	
+	@Autowired
+	private ProjectDao projectDao;
 	
 	public UserResponseDto insertUser (UserRequestDto dto) throws EntityNotFoundException, BadRequestException  {
 		
@@ -47,7 +53,14 @@ public class UserService {
 		response.setLastName(user.getLastName());
 		response.setUsername(user.getUsername());
 		response.setPermits(user.getPermits());
-		response.setProjects(user.getProjects());
+		response.setAdress(user.getAdress());
+		response.setEmail(user.getEmail());
+		response.setPhone(user.getPhone());
+		response.setDNI(user.getDNI());
+		response.setInscription(user.getInscription());
+		response.setBirthday(user.getBirthday());
+		response.setPassword(user.getPassword());
+		response.setPermits(user.getPermits());
 		
 		return response;
 	}
@@ -100,15 +113,20 @@ public class UserService {
 		}
 	return null;
 	}
+	
+	public UserResponseDto addProject (UserAddProjectDto dto) throws EntityNotFoundException, BadRequestException {
+		
+		User user = userDao.load(dto.getUserId());
+		Project project = projectDao.load(dto.getProjectId());
+		
+		user.addProject(project);
+		
+		userDao.update(user);
+		
+		UserResponseDto response = new UserResponseDto();
+		
+		response.setName(user.getName());
+		
+		return null;
+	}
 }
-
-
-
-
-
-
-
-
-
-
-

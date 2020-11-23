@@ -41,5 +41,4 @@ public class UserController {
     {
     	return userService.insertUser(request);
     } 
-
 }

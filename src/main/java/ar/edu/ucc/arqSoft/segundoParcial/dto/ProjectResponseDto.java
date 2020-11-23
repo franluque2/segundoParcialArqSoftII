@@ -7,6 +7,7 @@ import java.util.Set;
 import ar.edu.ucc.arqSoft.common.dto.DtoEntity;
 import ar.edu.ucc.arqSoft.segundoParcial.model.Comment;
 import ar.edu.ucc.arqSoft.segundoParcial.model.Task;
+import ar.edu.ucc.arqSoft.segundoParcial.model.User;
 
 
 public class ProjectResponseDto implements DtoEntity {
@@ -101,4 +102,11 @@ public class ProjectResponseDto implements DtoEntity {
 		this.tasks.add(taskDto);
 	}
 
+	public void addUser(User user) {
+		UserResponseDto userDto = new UserResponseDto();
+		
+		userDto.setName(user.getName());
+
+		this.users.add(userDto);
+}
 }
