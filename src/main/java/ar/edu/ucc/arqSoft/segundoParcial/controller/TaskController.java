@@ -55,13 +55,13 @@ public class TaskController {
         return taskService.insertTask(request);
     }
     
-    @RequestMapping(method=RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces= MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value="/taskName/changeUser",method=RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces= MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody TaskResponseDto changeTaskUser(@RequestBody TaskChangeRequestDto request) throws EntityNotFoundException, BadRequestException, TaskClosedException
     {
         return taskService.changeUser(request);
     }
     
-    @RequestMapping(method=RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces= MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value="/taskName/changeState",method=RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces= MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody TaskResponseDto changeTaskState(@RequestBody TaskChangeStateRequestDto request) throws EntityNotFoundException, BadRequestException, TaskClosedException
     {
         return taskService.changeState(request);
