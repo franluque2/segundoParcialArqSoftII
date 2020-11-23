@@ -125,7 +125,16 @@ public class UserService {
 		
 		UserResponseDto response = new UserResponseDto();
 		
-		response.setName("FACU");
+		response.setName(user.getName());
+		response.setAdress(user.getAdress());
+		response.setBirthday(user.getBirthday());
+		response.setDNI(user.getDNI());
+		response.setEmail(user.getEmail());
+		response.setInscription(user.getInscription());
+		response.setLastName(user.getLastName());
+		response.setPassword(user.getPassword());
+		response.setPermits(user.getPermits());
+		response.setPhone(user.getPhone());
 		
 		return response;
 	}

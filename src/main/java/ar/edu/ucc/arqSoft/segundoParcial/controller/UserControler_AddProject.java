@@ -1,5 +1,6 @@
 package ar.edu.ucc.arqSoft.segundoParcial.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +18,7 @@ import ar.edu.ucc.arqSoft.segundoParcial.service.UserService;
 @RequestMapping("/userAdd")
 public class UserControler_AddProject {
 	
+	@Autowired
 	UserService userService;
 	
     @RequestMapping(method=RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces= MediaType.APPLICATION_JSON_VALUE)
