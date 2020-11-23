@@ -29,7 +29,7 @@ public class State extends GenericObject {
 	@OneToMany(mappedBy="state", fetch = FetchType.LAZY)
 	private Set<Task> tasks;
 	
-	@OneToMany(mappedBy="project", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy="state", fetch = FetchType.LAZY)
 	private Set<Project> projects;
 
 	public Set<Project> getProjects() {

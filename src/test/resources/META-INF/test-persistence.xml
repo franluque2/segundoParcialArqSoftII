@@ -13,8 +13,8 @@
         <class>ar.edu.ucc.arqSoft.segundoParcial.model.Comment</class>
         <class>ar.edu.ucc.arqSoft.segundoParcial.model.State</class>
         <class>ar.edu.ucc.arqSoft.segundoParcial.model.Task</class>
-        <class>ar.edu.ucc.arqSoft.segundoParcial.model.XXXX</class>
-        <class>ar.edu.ucc.arqSoft.segundoParcial.model.XXX</class>
+        <class>ar.edu.ucc.arqSoft.segundoParcial.model.User</class>
+        <class>ar.edu.ucc.arqSoft.segundoParcial.model.Project</class>
         
         <properties>
         

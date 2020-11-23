@@ -1,2 +1,2 @@
 -- You can use this file to load seed data into the database using SQL statements
-insert into USER (name, last_name, adress, email, phone, inscription, birthday, username, password, permits) values ('Jose Maria', 'Quiroga', 'sarmiento 100' ,'jmquiroga@hotmail.com', '123',,'farg','root','admin' );
+insert into USER (ID, DNI, ADRESSS, BIRTHDAY, EMAIL, INSCRIPTION, LASTNAME, NAME, PASSWORD, PERMITS, PHONE, USERNAME) values (NULL, '1', 'ESTRADA','1000-01-01 00:00:00', 'TEST@UCC.EDU.AR', '1000-01-01 00:00:00', 'AHRE', 'FACUNDO', '12346789', 'ADMIN', '123', 'FARG')

@@ -23,14 +23,13 @@ public class Project extends GenericObject {
 	@ManyToMany(mappedBy = "projects")
 	private Set<User> users;
 	
-	@OneToMany(mappedBy = "task" , fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
 	private Set<Task> tasks;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="STATE_ID")
 	private State state;
 
-	
 	@NotNull
 	@Size(min = 1, max = 400)
 	@Column(name = "NAME")
