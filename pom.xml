@@ -6,7 +6,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>ar.edu.ucc.arqsoft</groupId>
-	<artifactId>baseService</artifactId>
+	<artifactId>segundoParcial</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
@@ -159,6 +159,6 @@
 	</dependencies>
 
 	<build>
-		<finalName>baseService</finalName>
+		<finalName>segundoParcial</finalName>
 	</build>
 </project>

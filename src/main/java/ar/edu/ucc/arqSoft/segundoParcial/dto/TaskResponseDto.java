@@ -1,11 +1,11 @@
 package ar.edu.ucc.arqSoft.segundoParcial.dto;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import ar.edu.ucc.arqSoft.common.dto.DtoEntity;
 import ar.edu.ucc.arqSoft.segundoParcial.model.Comment;
-import ar.edu.ucc.arqSoft.segundoParcial.model.State;
 
 public class TaskResponseDto implements DtoEntity {
 	// setName setUser setProject setDate
@@ -20,11 +20,11 @@ public class TaskResponseDto implements DtoEntity {
 	
 	private String body;
 	
-	private State state;
+	private Long stateId;
 	
 	private Date dateEnd;
 	
-	private Set<CommentResponseDto> comments;
+	private Set<CommentResponseDto> comments = new HashSet<CommentResponseDto>();
 	
 	public String getName() {
 		return name;
@@ -66,12 +66,12 @@ public class TaskResponseDto implements DtoEntity {
 		this.body = body;
 	}
 
-	public State getState() {
-		return state;
+	public Long getState() {
+		return stateId;
 	}
 
-	public void setState(State state) {
-		this.state = state;
+	public void setState(Long state) {
+		this.stateId = state;
 	}
 
 	public Date getDateEnd() {
@@ -89,9 +89,10 @@ public class TaskResponseDto implements DtoEntity {
 	public void setComments(Set<CommentResponseDto> comments) {
 		this.comments = comments;
 	}
-	
+
 	public void addComments(Comment comment)
 	{
+		
 		CommentResponseDto commentDto=new CommentResponseDto();
 		commentDto.setBody(comment.getBody());
 		commentDto.setDate(comment.getDate());

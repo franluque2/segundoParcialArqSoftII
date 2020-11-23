@@ -81,7 +81,7 @@ public class TaskService {
 		dto.setBody(task.getBody());
 		dto.setUserId(task.getUser().getId());
 		dto.setProjectId(task.getProject().getId());
-		dto.setState(task.getState());
+		dto.setState(task.getState().getId());
 		dto.setDateStart(task.getDateStart());
 		dto.setDateEnd(task.getDateEnd());
 		for(Comment comment : task.getComments())
@@ -114,15 +114,18 @@ public class TaskService {
 		for (Task task : tasks) {
 			TaskResponseDto responseTask= new TaskResponseDto();
 			responseTask.setBody(task.getBody());
+			
+			if(!task.getComments().isEmpty()) {
 			for(Comment comment : task.getComments())
 			{
 				responseTask.addComments(comment);;
 			}
+		}
 			responseTask.setDateStart(task.getDateStart());
 			responseTask.setDateEnd(task.getDateEnd());
 			responseTask.setName(task.getName());
 			responseTask.setProjectId(task.getProject().getId());
-			responseTask.setState(task.getState());
+			responseTask.setState(task.getState().getId());
 			responseTask.setUserId(task.getUser().getId());
 			
 			response.add(responseTask);
@@ -194,7 +197,7 @@ public class TaskService {
 			response.setUserId(task.getUser().getId());
 			response.setProjectId(task.getProject().getId());
 			response.setDateStart(task.getDateStart());
-			response.setState(task.getState());
+			response.setState(task.getState().getId());
 			
 			
 			return response;

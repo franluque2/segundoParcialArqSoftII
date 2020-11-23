@@ -39,7 +39,6 @@ public class Comment extends GenericObject {
 	private Task task;
 	
 	@NotNull
-	@Size(min = 1, max = 12)
 	@Column(name = "DATE")
 	private Date date;
 

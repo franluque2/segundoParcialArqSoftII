@@ -1,6 +1,7 @@
 package ar.edu.ucc.arqSoft.segundoParcial.model;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -46,19 +47,15 @@ public class Task extends GenericObject {
 	private State state;
 
 	@NotNull
-	@Size(min = 1, max = 12)
 	@Column(name = "DATE_START")
 	private Date dateStart;
 	
 	
-	@Size(min = 1, max = 400)
 	@Column(name = "DATE_END")
 	private Date dateEnd;
 
 	@OneToMany(mappedBy="task", fetch = FetchType.LAZY)
-	private Set<Comment> comments;
-
-
+	private Set<Comment> comments = new HashSet<Comment>();
 
 	public String getName() {
 		return name;

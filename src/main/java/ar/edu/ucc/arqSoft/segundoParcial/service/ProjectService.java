@@ -69,7 +69,7 @@ public class ProjectService {
 		return dto;
 	}
 	
-	public List<ProjectResponseDto> getAllProjects (Long id) throws EntityNotFoundException, BadRequestException{
+	public List<ProjectResponseDto> getAllProjects () throws EntityNotFoundException, BadRequestException{
 		
 		List<Project> projects = projectDao.getAll();
 		

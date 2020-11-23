@@ -32,11 +32,13 @@ public abstract class GenericDaoImp<E, ID extends Serializable> implements Gener
 	}
 
 	public void insert(E entity) throws BadRequestException {
+		
 		try {
 			em.persist(entity);
 		} catch (Exception e) {
 			throw new BadRequestException();
 		}
+
 	}
 
 	public void saveOrUpdate(E entity) {

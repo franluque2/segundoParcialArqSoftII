@@ -9,7 +9,6 @@ public class CommentRequestDto implements DtoEntity {
 	private String body;
 	private Long userId;
 	private Long taskId;
-	private Date date;
 	public String getName() {
 		return name;
 	}
@@ -33,11 +32,5 @@ public class CommentRequestDto implements DtoEntity {
 	}
 	public void setTaskId(Long taskId) {
 		this.taskId = taskId;
-	}
-	public Date getDate() {
-		return date;
-	}
-	public void setDate(Date date) {
-		this.date = date;
 	}
 }
