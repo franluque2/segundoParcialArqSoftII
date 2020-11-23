@@ -50,14 +50,6 @@ public class TaskResponseDto implements DtoEntity {
 		this.projectId = projectId;
 	}
 
-	public Date getDate() {
-		return dateStart;
-	}
-
-	public void setDate(Date date) {
-		this.dateStart = date;
-	}
-
 	public Date getDateStart() {
 		return dateStart;
 	}

@@ -61,7 +61,7 @@ public class TaskService {
 		response.setName(task.getName());
 		response.setUserId(task.getUser().getId());
 		response.setProjectId(task.getProject().getId());
-		response.setDate(task.getDateStart());
+		response.setDateStart(task.getDateStart());
 		
 		// Mail try catch
 		
@@ -112,7 +112,20 @@ public class TaskService {
 		List<TaskResponseDto> response = new ArrayList<TaskResponseDto>();
 		 
 		for (Task task : tasks) {
-			response.add((TaskResponseDto) new ModelDtoConverter().convertToDto(task, new TaskResponseDto()));
+			TaskResponseDto responseTask= new TaskResponseDto();
+			responseTask.setBody(task.getBody());
+			for(Comment comment : task.getComments())
+			{
+				responseTask.addComments(comment);;
+			}
+			responseTask.setDateStart(task.getDateStart());
+			responseTask.setDateEnd(task.getDateEnd());
+			responseTask.setName(task.getName());
+			responseTask.setProjectId(task.getProject().getId());
+			responseTask.setState(task.getState());
+			responseTask.setUserId(task.getUser().getId());
+			
+			response.add(responseTask);
 		}
 		
 		return response;
@@ -140,7 +153,7 @@ public class TaskService {
 			response.setName(task.getName());
 			response.setUserId(task.getUser().getId());
 			response.setProjectId(task.getProject().getId());
-			response.setDate(task.getDateStart());
+			response.setDateStart(task.getDateStart());
 			
 			
 			return response;
@@ -180,7 +193,7 @@ public class TaskService {
 			response.setName(task.getName());
 			response.setUserId(task.getUser().getId());
 			response.setProjectId(task.getProject().getId());
-			response.setDate(task.getDateStart());
+			response.setDateStart(task.getDateStart());
 			response.setState(task.getState());
 			
 			
