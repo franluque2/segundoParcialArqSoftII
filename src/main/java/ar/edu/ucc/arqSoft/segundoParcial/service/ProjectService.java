@@ -64,6 +64,7 @@ public class ProjectService {
 		response.setDescription(project.getDescription());
 		response.setStart(project.getStart());
 		response.setFinish(project.getFinish());
+		response.setStateId(project.getState().getId());
 		
 		//get all tasks
 		if(!project.getTasks().isEmpty()) {

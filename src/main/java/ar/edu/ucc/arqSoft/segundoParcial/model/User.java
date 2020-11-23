@@ -1,8 +1,10 @@
 package ar.edu.ucc.arqSoft.segundoParcial.model;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinTable;
@@ -18,13 +20,14 @@ import ar.edu.ucc.arqSoft.common.model.GenericObject;
 @Table(name = "USER")
 public class User extends GenericObject {
 
-
-	@ManyToMany
+	
+	
+	@ManyToMany(cascade = { CascadeType.ALL })
 	 @JoinTable(
 	   name="USER_PROJECT",
-	   joinColumns=@JoinColumn(name="USER_ID", referencedColumnName="ID"),
-	   inverseJoinColumns=@JoinColumn(name="PROJECT_ID", referencedColumnName="ID"))
-	public Set<Project> projects ;
+	   joinColumns=@JoinColumn(name="USER_ID"),
+	   inverseJoinColumns=@JoinColumn(name="PROJECT_ID"))
+	public Set<Project> projects = new HashSet<Project>();
 	
 	public Set<Project> getProjects(){return projects;};
 

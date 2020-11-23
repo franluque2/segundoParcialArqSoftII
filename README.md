@@ -9,7 +9,9 @@ post user
 curl -X POST -H 'Content-Type: application/json' -i http://localhost:8080/baseService/user --data '{"name":"name","lastName":"ribetti", "adress":"123","email":"123","phone":"123","DNI":"12313","inscription":"2020-03-08","birthday":"2020-03-08","username":"root","password":"root","permits":"admin" }'
 post project
 curl -X POST -H 'Content-Type: application/json' -i http://localhost:8080/baseService/project --data '{"name":"name","description":"prueba del post","start":"2020-03-08","state":"1" }'
+post para cambiar el usuario a cargo de una tarea
+curl -X POST -H 'Content-Type: application/json' -i http://localhost:8080/baseService/taskChangeUser --data '{"userId":"3","taskId":"1"}'
+post para cambiar el estado de una tarea 
+curl -X POST -H 'Content-Type: application/json' -i http://localhost:8080/baseService/taskChangeState --data '{"stateId":"1","taskId":"1"}'
 
 
-
-w 

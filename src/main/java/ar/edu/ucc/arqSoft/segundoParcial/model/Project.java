@@ -1,6 +1,7 @@
 package ar.edu.ucc.arqSoft.segundoParcial.model;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -22,7 +23,7 @@ import ar.edu.ucc.arqSoft.common.model.GenericObject;
 public class Project extends GenericObject {
 
 	@ManyToMany(mappedBy = "projects")
-	private Set<User> users;
+	private Set<User> users = new HashSet<User>();
 	
 	@OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
 	private Set<Task> tasks;

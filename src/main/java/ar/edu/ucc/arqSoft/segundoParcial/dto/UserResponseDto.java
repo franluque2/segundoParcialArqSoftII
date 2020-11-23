@@ -5,7 +5,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import ar.edu.ucc.arqSoft.common.dto.DtoEntity;
-import ar.edu.ucc.arqSoft.segundoParcial.model.Project;
 
 public class UserResponseDto implements DtoEntity {
 	
@@ -128,6 +127,4 @@ public class UserResponseDto implements DtoEntity {
 	public void setPhone(int phone) {
 		this.phone = phone;
 	}
-
-	
 }

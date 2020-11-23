@@ -116,8 +116,8 @@ public class UserService {
 	
 	public UserResponseDto addProject (UserAddProjectDto dto) throws EntityNotFoundException, BadRequestException {
 		
-		User user = userDao.load(dto.getUserId());
-		Project project = projectDao.load(dto.getProjectId());
+		User user = userDao.load(dto.getUserId()); //ok
+		Project project = projectDao.load(dto.getProjectId()); //ok
 		
 		user.addProject(project);
 		
@@ -125,8 +125,8 @@ public class UserService {
 		
 		UserResponseDto response = new UserResponseDto();
 		
-		response.setName(user.getName());
+		response.setName("FACU");
 		
-		return null;
+		return response;
 	}
 }
