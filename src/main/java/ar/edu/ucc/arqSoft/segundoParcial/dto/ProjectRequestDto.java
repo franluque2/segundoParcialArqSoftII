@@ -18,17 +18,17 @@ public class ProjectRequestDto implements DtoEntity {
 	
 	private Date finish;
 	
-	private State state;
+	private Long state;
 	
 	private Set<User> users;
 	
 	private Set<Task> tasks;
 
-	public State getState() {
+	public Long getState() {
 		return state;
 	}
 
-	public void setState(State state) {
+	public void setState(Long state) {
 		this.state = state;
 	}
 

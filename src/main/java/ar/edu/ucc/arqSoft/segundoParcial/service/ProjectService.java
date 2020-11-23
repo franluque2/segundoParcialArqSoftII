@@ -12,6 +12,7 @@ import ar.edu.ucc.arqSoft.common.dto.ModelDtoConverter;
 import ar.edu.ucc.arqSoft.common.exception.BadRequestException;
 import ar.edu.ucc.arqSoft.common.exception.EntityNotFoundException;
 import ar.edu.ucc.arqSoft.segundoParcial.dao.ProjectDao;
+import ar.edu.ucc.arqSoft.segundoParcial.dao.StateDao;
 import ar.edu.ucc.arqSoft.segundoParcial.dto.ProjectRequestDto;
 import ar.edu.ucc.arqSoft.segundoParcial.dto.ProjectResponseDto;
 import ar.edu.ucc.arqSoft.segundoParcial.model.Project;
@@ -25,6 +26,9 @@ public class ProjectService {
 	@Autowired
 	private ProjectDao projectDao;
 	
+	@Autowired
+	private StateDao stateDao;
+	
 	public ProjectResponseDto insertProject(ProjectRequestDto dto) throws EntityNotFoundException, BadRequestException {
 
 		Project project = new Project();
@@ -33,9 +37,7 @@ public class ProjectService {
 		project.setDescription(dto.getDescription());
 		project.setStart(Calendar.getInstance().getTime());
 		project.setFinish(dto.getFinish());
-		//project.setState(dto.getState());
-		//project.setUsers(dto.getUsers());
-		//project.setTasks(dto.getTasks());
+		project.setState(stateDao.load(dto.getState()));
 		
 		projectDao.insert(project);
 		
@@ -45,11 +47,8 @@ public class ProjectService {
 		response.setDescription(project.getDescription());
 		response.setFinish(project.getFinish());
 		response.setStart(project.getStart());
-		//response.setState(project.getState());
-		//response.setTasks(project.getTasks());
-		//response.setTasks(project.getTasks());
-		//response.setUsers(project.getUsers());
-		
+		response.setStateId(project.getState().getId());
+
 		return response;
 	}
 	
